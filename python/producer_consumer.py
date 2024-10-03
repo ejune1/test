@@ -1,4 +1,5 @@
 import time
+import random
 from threading import Thread
 from threading import Lock
 from threading import Event
@@ -33,7 +34,7 @@ class Messages:
         return message
 
 class Producer:
-    def __init(self, messages, limit):
+    def __init__(self, messages, limit):
         self.messages = messages
         self.limit  = limit
     
@@ -53,7 +54,7 @@ class Producer:
         print(f"Producer sent {limit} messages")
 
 class Consumer:
-    def __init(self, messages):
+    def __init__(self, messages):
         self.messages = messages
 
     def consume(self):
@@ -77,8 +78,8 @@ if __name__ == "__main__":
     producer_thread = Thread(target = producer.produce)
     consumer_thread = Thread(target = consumer.consume)
 
-    producer.start()
-    consumer.start()
+    producer_thread.start()
+    consumer_thread.start()
 
-    producer.join()
-    consumer.join()
+    producer_thread.join()
+    consumer_thread.join()
